@@ -1,1 +1,3 @@
 ultralytics==8.0.145
+# pip install moviepy, pytube
+# pip install opencv-python
