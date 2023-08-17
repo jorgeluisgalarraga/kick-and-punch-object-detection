@@ -1,8 +1,11 @@
 from pytube import YouTube
 
-video_url = 'https://www.youtube.com/shorts/qLRq6AwFImA'
-yt = YouTube(video_url)
-stream = yt.streams.get_highest_resolution()  # Gets the first mp4 stream available
-# Download the video in the specific folder, that if it's not already there, it will be create
-download_path = stream.download(output_path='./extracted_f')  
-print(f"Video downloaded at {download_path}")
+# Download a video from YouTube
+def download_yt_video():
+    video_url = input("Enter the video URL: ")
+    yt = YouTube(video_url)
+    stream = yt.streams.get_highest_resolution()  # Gets the first mp4 stream available
+    # Download the video in the specific folder, that if it's not already there, it will be create
+    download_path = stream.download(output_path='videos')  
+    print(f"Video downloaded at {download_path}")
+    return download_path
