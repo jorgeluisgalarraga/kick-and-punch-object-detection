@@ -24,3 +24,7 @@ To execute the app, most of the commands are run from the root folder in your co
 ### Test the app
 
 In the */videos* folder are some videos if you want to try the app and you don't have any video locally.
+
+## Dataset
+
+Our dataset can be found at [Kick and Punch object detector dataset](https://universe.roboflow.com/georgebrown/kick-and-punch-object-detection)
