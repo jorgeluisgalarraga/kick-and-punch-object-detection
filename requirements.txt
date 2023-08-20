@@ -1,3 +1,19 @@
 ultralytics==8.0.145
+streamlit==1.25.0
+# streamlit-camera-input-live==0.2.0
+# streamlit-card==0.0.61
+# streamlit-embedcode==0.1.2
+# streamlit-extras==0.3.0
+# streamlit-faker==0.0.2
+# streamlit-image-coordinates==0.1.6
+# streamlit-keyup==0.2.0
+# streamlit-toggle-switch==1.0.2
+# streamlit-vertical-slider==1.0.2
+dill==0.3.3
+# opencv-python==4.8.0.76
+# opencv-python-headless==4.8.0.74
+moviepy==1.0.3
+pytube==15.0.0
+
 # pip install moviepy, pytube
 # pip install opencv-python

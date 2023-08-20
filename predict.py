@@ -7,7 +7,7 @@ from ultralytics import YOLO
 model = YOLO('./model_data/best.pt')
 # cut_video(download_path)
 # # Run inference on 'bus.jpg' with arguments
-model.predict('./videos/clipped_video.mp4', save=True ,conf=0.65)
+model.predict('./videos/clipped_video.mp4', save=True, conf=0.65)
 
 # print(results.plot())
 # reproduce_video('./runs/detect/train22/weights/best.pt', './videos/short_video.mp4')

@@ -1,20 +1,26 @@
 import cv2
+import os
+import tempfile
+import uuid
 from ultralytics import YOLO
 
 def reproduce_video(path_model, path_video, consecutive_frames=5, cooldown=15):
     # Load the YOLOv8 model
     model = YOLO(path_model)
 
+    tfile = tempfile.NamedTemporaryFile(delete=False, suffix='.mp4')
+    tfile.write(path_video.read())
+
     # Open the video file
-    video_path = path_video
-    cap = cv2.VideoCapture(video_path)
+    cap = cv2.VideoCapture(tfile.name)
 
     # Initialize the VideoWriter outside the loop
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     fps = cap.get(cv2.CAP_PROP_FPS)
     frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-    cap_out = cv2.VideoWriter('./videos/clipped_video_out.mp4', fourcc, fps, (frame_width, frame_height))
+    processed_video_path =  f'./videos/streamlit_video_{uuid.uuid4()}.mp4'
+    cap_out = cv2.VideoWriter(processed_video_path, fourcc, fps, (frame_width, frame_height))
 
     total_kicks, total_punches, total_grappling = 0, 0, 0
     kick_cooldown, punch_cooldown, grappling_cooldown = 0, 0, 0
@@ -83,14 +89,15 @@ def reproduce_video(path_model, path_video, consecutive_frames=5, cooldown=15):
             cv2.putText(annotated_frame, f'Punches: {total_punches}', (10, y_offset - 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2, cv2.LINE_AA)
             cv2.putText(annotated_frame, f'Grappling: {total_grappling}', (10, y_offset - 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2, cv2.LINE_AA)
 
-            cv2.imshow("YOLOv8 Inference", annotated_frame)
+            # Display the annotated frame, however, this is triggering an error in Streamlit
+            # cv2.imshow("YOLOv8 Inference", annotated_frame)
 
             # Write the annotated frame to the output video
             cap_out.write(annotated_frame)
 
             # Break the loop if 'q' is pressed
-            if cv2.waitKey(1) & 0xFF == ord("q"):
-                break
+            # if cv2.waitKey(1) & 0xFF == ord("q"):
+            #     break
         else:
             # Break the loop if the end of the video is reached
             break
@@ -98,10 +105,13 @@ def reproduce_video(path_model, path_video, consecutive_frames=5, cooldown=15):
     # Release the video capture and writer objects, and close the display window
     cap.release()
     cap_out.release()
-    cv2.destroyAllWindows()
+    # cv2.destroyAllWindows()
 
     print(f"Total Kicks: {total_kicks}")
     print(f"Total Punches: {total_punches}")
     print(f"Total Grappling: {total_grappling}")
 
-reproduce_video('./runs/detect/train22/weights/best.pt', './videos/short_video.mp4')
+    tfile.close()
+    os.unlink(tfile.name)
+
+    return processed_video_path

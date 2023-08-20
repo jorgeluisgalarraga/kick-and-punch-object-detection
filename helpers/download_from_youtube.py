@@ -9,3 +9,5 @@ def download_yt_video():
     download_path = stream.download(output_path='videos')  
     print(f"Video downloaded at {download_path}")
     return download_path
+
+download_yt_video()
