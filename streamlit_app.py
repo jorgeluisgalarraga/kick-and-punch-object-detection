@@ -31,22 +31,24 @@ def set_background(image_file):
 
 def main():
     st.title(":red[Kick and Punch detector with YoloV8]")
-    
+
     # Upload the video
     video_file = st.file_uploader("Upload a video file", type=["mp4", "avi", "mov"])
     
     if video_file is not None:
         st.video(video_file)
-
+        
         # Call the reproduce_video function on button click
         if st.button("Process Video"):
+            
+            st.write("Your video is being processed. This may take a while...")
+            
             path_model = './model_data/best.pt'
             processed_video_path = reproduce_video(path_model, video_file)
             st.video(processed_video_path)  # Play the processed video
 
             # Download the processed video
             st.markdown(get_video_download_link(processed_video_path, 'processed_video.mp4'), unsafe_allow_html=True)
-
 
 if __name__ == "__main__":
     set_background('./images/bg.jpg')

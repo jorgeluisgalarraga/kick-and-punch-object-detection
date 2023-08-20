@@ -13,4 +13,4 @@ def cut_video(video_path, start_time: int = 20, end_time: int = 35, save_path='.
 #TODO: Add an if to ask if the video is already downloaded or you want to download it from YouTube
 # Uncomment the following line to download a video from YouTube and cut it
 # download_video = download_yt_video()
-cut_video('videos/clipped_video_out.mp4', 0, 20)
+cut_video('videos/Top Finishes  UFC 292.mp4', 0, 20)

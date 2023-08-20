@@ -89,14 +89,15 @@ def reproduce_video(path_model, path_video, consecutive_frames=5, cooldown=15):
             cv2.putText(annotated_frame, f'Punches: {total_punches}', (10, y_offset - 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2, cv2.LINE_AA)
             cv2.putText(annotated_frame, f'Grappling: {total_grappling}', (10, y_offset - 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2, cv2.LINE_AA)
 
-            cv2.imshow("YOLOv8 Inference", annotated_frame)
+            # Display the annotated frame, however, this is triggering an error in Streamlit
+            # cv2.imshow("YOLOv8 Inference", annotated_frame)
 
             # Write the annotated frame to the output video
             cap_out.write(annotated_frame)
 
             # Break the loop if 'q' is pressed
-            if cv2.waitKey(1) & 0xFF == ord("q"):
-                break
+            # if cv2.waitKey(1) & 0xFF == ord("q"):
+            #     break
         else:
             # Break the loop if the end of the video is reached
             break
@@ -104,7 +105,7 @@ def reproduce_video(path_model, path_video, consecutive_frames=5, cooldown=15):
     # Release the video capture and writer objects, and close the display window
     cap.release()
     cap_out.release()
-    cv2.destroyAllWindows()
+    # cv2.destroyAllWindows()
 
     print(f"Total Kicks: {total_kicks}")
     print(f"Total Punches: {total_punches}")
