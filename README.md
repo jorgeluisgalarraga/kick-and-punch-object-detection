@@ -9,7 +9,10 @@ To execute the app, most of the commands are run from the root folder in your co
 
 ## Docker image
 
-- In case you want to run some experiments with the Docker container, you need to build your image being in the root folder:
+- You can try the image already built from the Docker hub by typing:
+``docker pull jorgeluisg/kick-punch-detector:latest``
+ 
+- In case you want to run some experiments locally with the Docker image, you need to build your image in the root folder:
 ``docker build -t kick-punch-detector:latest .``
 
 - Then, run the kick and punch detector image:
@@ -17,13 +20,13 @@ To execute the app, most of the commands are run from the root folder in your co
 
 - If you want to visualize how many images, you can do: ``docker images``
 
-- In order to remove the image, run the following command by addin the ID CONTAINER: ``docker rmi -f <ID CONTAINER>``
+- In order to remove the image, run the following command by adding the ID CONTAINER: ``docker rmi -f <ID CONTAINER>``
 
 - Next, in order to clean some space: ``docker system prune``
 
 ### Test the app
 
-In the */videos* folder are some videos if you want to try the app and you don't have any video locally.
+In the */videos* folder are some videos if you want to try the app and you don't have any videos locally.
 
 ## Dataset
 
