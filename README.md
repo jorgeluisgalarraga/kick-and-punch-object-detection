@@ -1,4 +1,6 @@
 # kick-and-punch-object-detection
+You can try the [Kick and Punch Detector](https://kick-and-punch-object-detection.streamlit.app/) 
+
 
 To execute the app, most of the commands are run from the root folder in your command line.
 
